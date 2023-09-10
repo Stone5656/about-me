@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="Yasuda Jo,自己紹介,前期課題">
+  <meta name="description" content="前期課題の自己紹介サイトです">
+  <meta name="format-detection" content="telephone=no">
+  
+	<title>自己紹介</title>
+
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+
+<body>
+<header class="header">
+  <h1>
+    <a href="/contact/index.html" class="logo">
+      <img src="/img/security_key_37451-300x300.png" alt="logo">
+    </a>
+  </h1>
+  <div class="hamburger-menu">
+    <input type="checkbox" id="menu-btn-check">
+    <label for="menu-btn-check" class="menu-btn"><span></span></label>
+  <nav class="menu-content">
+    <ul>
+      <li><a href="/index.html" title="top">Top</a></li>
+      <li><a href="/my_profile/index.html" title="自己紹介">Profile</a></li>
+      <li><a href="#" title="お問い合わせフォーム">Contact</a></li>
+      <li><a href="/created/index.html" title="作ったもの">Created</a></li>
+      <li><a href="/likes/index.html" title="好きなもの">Likes</a></li>
+    </ul>
+  </nav>
+  </div>
+</header>
+	<main>
+        <div id="app">
+          <form @submit.prevent="sendMessage">
+              <label for="name" class="block mb-2">名前:</label>
+              <input v-model="name" id="name" name="name" required type="text" class="w-full p-2.5 border border-gray-400 focus:border-blue-900 focus:outline-none">
+      
+              <label for="email" class="block mt-4 mb-2">メールアドレス:</label>
+              <input v-model="email" id="email" name="email" required type="email" class="w-full p-2.5 border border-gray-400 focus:border-blue-900 focus:outline-none">
+      
+              <label for="message" class="block mt-4 mb-2">メッセージ:</label>
+              <textarea v-model="message" id="message" name="message" required class="w-full p-2.5 border border-gray-400 focus:border-blue-900 focus:outline-none"></textarea>
+      
+              <button type="submit" class="bg-transparent border-none cursor-pointer mt-4 hover:opacity-65">
+                送信
+              </button>
+          </form>
+        </div>
+      
+      <script>
+          new Vue({
+              el: '#app',
+              data: {
+                  name: '',
+                  email: '',
+                  message: ''
+              },
+              methods: {
+                sendMessage() {
+        const discordMessage = {
+            content: `新しいお問い合わせ:\n名前: ${this.name}\nメール: ${this.email}\nメッセージ: ${this.message}`
+        };
+    
+        axios.post('https://discord.com/api/webhooks/1124218529638514769/NtBGlwCsW-0E-IyrJ4O5lH2jPrbJrUwcTP4O8gSqOtwwG0-M6OrqfLJe3WRT9qvTSZh9', discordMessage)
+             .then(response => {
+                 if (response.status === 204) {  // Discord Webhookは成功時にHTTP 204を返します
+                     alert('メッセージが送信されました！');
+                 } else {
+                     alert('メッセージの送信に失敗しました。');
+                 }
+             })
+             .catch(error => {
+                 alert('エラーが発生しました。');
+             });
+            }
+          }
+              
+    });
+      </script>
+      <footer class="footer">
+        <div class="footer-sns">
+          <a href="#" target ="_blank"><img src="/img/Discord.png" alt="Discord"></a>
+          <a href="#" target ="_blank"><img src="/img/instagram.png" alt="instagram"></a>
+        </div>
+      </footer>
+</body>
+</html>
