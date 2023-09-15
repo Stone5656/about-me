@@ -1,14 +1,24 @@
-.header {
+@charset "UTF-8";
+body{
+    max-width: 100%;
+    margin: 0;
+}
+
+.header{
     position: relative;
-    padding-top: 15px;
+    padding: 15px 0 144px;
     background-color: #fff;
 }
 
-.logo img {
-    top: 10px;
+.logo{
+    position: absolute;
+    z-index: 2;
+    width: 140px;
     padding-bottom: 5px;
-    margin: 0 auto;
-    width: 15%;
+}
+
+.logo img{
+    width: 140px;
 }
 
 .nav-toggle {
@@ -107,26 +117,4 @@
     position: absolute;
     right: 11px;
     top: 16px;
-}
-
-.footer{
-    padding: 20px 0 10px;
-    color: #000;
-    text-align: center;
-    background: url("../img/footer_bg.svg") center center / cover no-repeat;
-}
-.footer img{
-    width: 20%;
-    height: 20%;
-}
-.footer-logo{
-    margin-bottom: 10px;
-}
-.footer-sns{
-    margin: 20px 0;
-}
-.footer-sns img{
-    width: 10%;
-    height: 10%;
-    padding-left: 16px;
 }
